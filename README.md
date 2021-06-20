@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Foundry-v0.8.6-informational)
+![](https://img.shields.io/badge/Foundry-v0.8.7-informational)
 <!--- Downloads @ Latest Badge -->
 <!--- replace <user>/<repo> with your username/repository -->
 <!--- ![Latest Release Download Count](https://img.shields.io/github/downloads/<user>/<repo>/latest/module.zip) -->
@@ -13,6 +13,24 @@ Playlist Enhancer allows you to create playlists from the current playing tracks
 
 All track settings (Volume, fade etc.) are accurately saved within the new playlist when curating playlists or moving songs.
 
+![](/images/curate_GIF.gif)
+![](/images/dragdrop_GIF.gif)
+
+### Incompatibilities
+
+Most likely incompatible with "Playlist Drag and Drop" as the drop functions may conflict. Remains untested.
+
+### Issues
+
+If you have any issues, please feel free to raise them here on Github.
+
 ## Changelog
 
+### v1.0.0: Main release including all major features:
+Added drag & drop support for copying songs between playlists
+Improved error handling
+Improved code structure and function use
+First major release
+
 0.1: Initial Release
+Base strcutures and ideas in place.
