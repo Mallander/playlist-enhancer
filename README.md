@@ -9,9 +9,9 @@
 
 # FoundryVTT Module
 
-Playlist Enhancer allows you to create playlists from the current playing tracks. Curate your sounds/atmosphere and click the "Quick Combine" button to create a playlist containing those sounds and their properties.
+Playlist Enhancer allows you to create playlists from the current playing tracks. Curate your sounds and atmosphere and click the "Curate" button to create a playlist containing those sounds and their properties. Also adds support for drag & dropping copies of songs between playlists to make sound management a breeze.
 
-All track settings (Volume, fade etc.) are accurately saved within the new playlist.
+All track settings (Volume, fade etc.) are accurately saved within the new playlist when curating playlists or moving songs.
 
 ## Changelog
 

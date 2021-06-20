@@ -1,12 +1,12 @@
 {
   "name": "playlist-enchancer",
   "title": "Playlist Enchancer",
-  "description": "Create playlists from currently playing songs",
+  "description": "Create playlists from currently playing songs and drag & drop songs between playlists",
   "version": "This is auto replaced",
   "library": "false",
   "manifestPlusVersion": "1.0.0",
   "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "0.8.6",
+  "compatibleCoreVersion": "0.8.7",
   "authors": [
     {
       "name": "Mallander",

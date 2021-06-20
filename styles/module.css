@@ -1,3 +1,13 @@
 .quick-combine {
-	
+	flex: 0.35;
+    height: 28px;
+    line-height: 26px;
+}
+
+.quick-combine i {
+	margin-right: 7px;
+}
+
+#currently-playing .playlist-header h4 {
+	line-height: 26px;
 }
