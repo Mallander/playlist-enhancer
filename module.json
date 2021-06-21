@@ -1,7 +1,7 @@
 {
   "name": "playlist-enhancer",
   "title": "Playlist Enhancer",
-  "description": "Playlist Enhancer allows you to create playlists from the current playing sounds as well as simplified copying of sounds between playlists using drag & drop.\nCurate your sounds and atmosphere and click the "Curate" button to create a playlist containing those sounds and their properties. All track settings (Volume, fade etc.) are accurately saved within the new playlist when curating playlists or moving songs.",
+  "description": "Playlist Enhancer allows you to create playlists from the current playing sounds as well as simplified copying of sounds between playlists using drag & drop. Curate your sounds and atmosphere and click the "Curate" button to create a playlist containing those sounds and their properties. All track settings (Volume, fade etc.) are accurately saved within the new playlist when curating playlists or moving songs.",
   "version": "PLEASE USE RELEASE MANIFEST",
   "library": "false",
   "manifestPlusVersion": "1.0.0",
