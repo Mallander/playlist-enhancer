@@ -2,7 +2,7 @@
   "name": "playlist-enhancer",
   "title": "Playlist Enhancer",
   "description": "Create playlists from currently playing songs and drag & drop songs between playlists",
-  "version": "This is auto replaced",
+  "version": "PLEASE USE RELEASE MANIFEST",
   "library": "false",
   "manifestPlusVersion": "1.0.0",
   "minimumCoreVersion": "0.8.6",
@@ -36,9 +36,9 @@
       "path": "languages/en.json"
     }
   ],
-  "url": "This is auto replaced",
-  "manifest": "This is auto replaced",
-  "download": "This is auto replaced",
+  "url": "PLEASE USE RELEASE MANIFEST",
+  "manifest": "PLEASE USE RELEAS MANIFEST",
+  "download": "PLEASE USE RELEAS MANIFEST",
   "media": [
     {
       "type": "icon",

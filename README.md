@@ -26,11 +26,24 @@ If you have any issues, please feel free to raise them here on Github.
 
 ## Changelog
 
-### v1.0.0: Main release including all major features:
+
+### v1.0.2: Combine with existing playlist
+
+Manifest: https://github.com/Mallander/playlist-enhancer/releases/download/v1.0.2/module.json
+
+Added support for combining with an existing playlist
+Improved error handling for cases where multiple playlists exist with the same name already to avoid confusion
+Improved existing sound data handling, now correctly assigns all properties
+
+### v1.0.1: Main release including all major features:
+
+Manifest: https://github.com/Mallander/playlist-enhancer/releases/download/v1.0.1/module.json
+
 Added drag & drop support for copying songs between playlists
 Improved error handling
 Improved code structure and function use
 First major release
+
 
 0.1: Initial Release
 Base strcutures and ideas in place.

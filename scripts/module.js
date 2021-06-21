@@ -20,7 +20,7 @@ Hooks.on('renderPlaylistDirectory', (app, html) => {
 		buttons: {
 			button1: {
 				label: "Create Playlist",
-				callback: (html) => {combinePlaylist(html)},
+				callback: (html) => {beginCombinePlaylist(html)},
 				icon: `<i class="fas fa-check"></i>`
 			},
 		}
@@ -99,7 +99,7 @@ function getPlaylistIdFromElement(el) {
 
 
 // Function for the playlist combination
-async function combinePlaylist(formHtml) {
+async function beginCombinePlaylist(formHtml) {
 
 	// Set Variables:
 	// Playlist name: string, form input
@@ -107,7 +107,14 @@ async function combinePlaylist(formHtml) {
 	// Playlist: playlist, checks if the name's in use
 	let playlistName = formHtml.find("#curated-name").val();
 	let playingSounds = game.playlists.directory._playingSounds
-	let playlist = game.playlists.entities.find(p => p.name === playlistName)
+	let playlist = game.playlists.entities.filter(p => p.name === playlistName)
+
+	if(playlist.length > 1) {
+		ui.notifications.error(`Multiple tracks with the name '${playlistName}' already exist. Please use a unique name, or combine with a single existing playlist.`)
+		return;
+	}
+
+	playlist = game.playlists.entities.find(p => p.name === playlistName)
 
 	// Check if sounds are playing
 	if(playingSounds.length == 0) {
@@ -115,29 +122,31 @@ async function combinePlaylist(formHtml) {
 		return;
 	}
 
-	// Check if playlist name is in use already
-	if(playlist != undefined || playlist != null) {
-		ui.notifications.error("Playlist already exists with the name '" + playlistName + "'.");
-		return;
-	}
+	checkOverwriteExistingPlaylist(playlistName, playingSounds, playlist);
+
+}
+
+async function createCombinePlaylist(playlistName, playingSounds, playlist, overwrite) {
 
 	// Begin Curation
 	ui.notifications.info("Curating playlist...")
 
-	// Create empty playlsit
-	await Playlist.create({
-	    "name": playlistName,
-	    "permission": {
-	        "default": 0,
-	    },
-	    "flags": {},
-	    "sounds": [],
-	    "mode": 2,
-	    "playing": false,
-	});
+	if(!overwrite) {
+		// Create empty playlsit
+		await Playlist.create({
+		    "name": playlistName,
+		    "permission": {
+		        "default": 0,
+		    },
+		    "flags": {},
+		    "sounds": [],
+		    "mode": 2,
+		    "playing": false,
+		});
 
-	// Get the playlist object we can inject songs into
-	playlist = game.playlists.entities.find((p) => p.name === playlistName)
+		// Get the playlist object we can inject songs into
+		playlist = game.playlists.entities.find((p) => p.name === playlistName)
+	}
 
 	// Check if playlist has created properly.
 	if(playlist == undefined || playlist == null) {
@@ -150,12 +159,40 @@ async function combinePlaylist(formHtml) {
 		await addSongToPlaylist(playingSounds[i], playlist)
 	}
 
-	// Complete curation
-	ui.notifications.info("Playlist '" + playlistName + "' created successfully!")
+
+	if(overwrite) {
+		// Complete curation (overwritten)
+		ui.notifications.info("Playlist '" + playlistName + "' updated successfully!")
+	} else {
+		// Complete curation
+		ui.notifications.info("Playlist '" + playlistName + "' created successfully!")
+	}
 }
 
 // Add song object to new playlist object with existing song settings
 async function addSongToPlaylist(song, playlist) {
+	playlist.createEmbeddedEntity("PlaylistSound", { name: song.data.name, path: song.data.path, repeat: song.data.repeat, volume: song.data.volume, fade: song.data.fade == undefined ? 1000 : song.data.fade }, {});
+}
 
-	playlist.createEmbeddedEntity("PlaylistSound", { name: song.name, path: song.path, repeat: song.repeat, volume: song.volume, fade: song.fade == undefined ? 1000 : song.fade }, {});
+async function checkOverwriteExistingPlaylist(playlistName, playingSounds, playlist) {
+
+	// Check if playlist name is in use already
+	if(playlist != undefined || playlist != null) {
+
+		// Create confirmation dialog to see if user wants to combine
+		Dialog.confirm({
+			title: 'Combine with existing',
+			content: `Playlist '${playlistName}' already exists. Do you want to add these tracks into the existing playlist?\n`,
+			yes: () => { createCombinePlaylist(playlistName, playingSounds, playlist, true); },
+			no: () => {
+				ui.notifications.error("Playlist already exists with the name '" + playlistName + "'.");
+				return;
+			},
+			defaultYes: true
+		})
+
+	} else {
+		createCombinePlaylist(playlistName, playingSounds, playlist, false);
+	}
+	
 }
