@@ -1,7 +1,7 @@
 ![](https://img.shields.io/badge/Foundry-v0.8.7-informational)
 <!--- Downloads @ Latest Badge -->
 <!--- replace <user>/<repo> with your username/repository -->
-![Latest Release Download Count](https://img.shields.io/github/downloads/Mallander/playlist-enhancer/latest/module.zip) 
+[![Github All Releases](https://img.shields.io/github/downloads/Mallander/playlist-enhancer/total.svg)]()
 
 <!--- Forge Bazaar Install % Badge -->
 <!--- replace <your-module-name> with the `name` in your manifest -->
