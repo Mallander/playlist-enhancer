@@ -169,16 +169,17 @@ function getPlaylistIdFromElement(el) {
 		(el.closest(".playlist") == undefined || el.closest(".playlist") == null) &&
 		!el.classList.contains("playlist")
 	) {
+		if (el.classList.contains("folder") || el.closest(".folder") != undefined) {
+			ui.notifications.error(
+				"Playlist Enhancer Error: You cannot add a track directly to a folder. Target must be a playlist."
+			);
+			return false;
+		}
+
 		console.log("Playlist Enhancer Drop Target:");
-		console.log(el.classList());
+		console.log(el.classList);
 		ui.notifications.error(
 			"Playlist Enhancer Error: Target must be a playlist"
-		);
-		return false;
-	}
-	if (el.classList.contains("folder")) {
-		ui.notifications.error(
-			"Playlist Enhancer Error: You cannot add a track directly to a folder. Target must be a playlist."
 		);
 		return false;
 	}
