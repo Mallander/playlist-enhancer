@@ -1,13 +1,76 @@
-.quick-combine {
-	flex: 0.35;
-    height: 28px;
-    line-height: 26px;
+:root {
+	--playingColour: #008000;
+	--pausedColour: #ff6400;
 }
 
-.quick-combine i {
+.playlist-enhancer-curate {
+	flex: 0.35;
+	height: 28px;
+	line-height: 26px;
+}
+
+.playlist-enhancer-curate i {
 	margin-right: 7px;
 }
 
 #currently-playing .playlist-header h4 {
 	line-height: 26px;
+}
+
+input[name="beSaveDefaults"] {
+	width: 100%;
+	margin: 0 5px 0 0;
+	background: rgba(0, 0, 0, 0.1);
+	border: 2px groove #f0f0e0;
+	border-radius: 3px;
+	font-size: 14px;
+	line-height: 28px;
+	font-family: "Signika", sans-serif;
+}
+
+input[name="beSaveDefaults"]:hover {
+	outline: none;
+	box-shadow: 0 0 5px red;
+}
+
+/* Playing sound colours */
+.playing-playlist {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.playing-playlist .playlist-header h4 {
+	color: var(--playingColour);
+	text-decoration: underline;
+}
+
+.playing-sound {
+	color: var(--playingColour);
+	background-color: transparent;
+}
+
+.playing-folder {
+	padding-left: 10px;
+}
+
+li.folder.collapsed > .folder-header h3 > i.fa-volume-up:before {
+	content: "\f028" !important;
+}
+
+li.folder.collapsed > .folder-header h3 > i.fa-pause:before {
+	content: "\f04c" !important;
+}
+
+/* Paused sound colours*/
+.paused-playlist {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.paused-playlist .playlist-header h4 {
+	color: var(--pausedColour);
+	text-decoration: underline;
+}
+
+.paused-sound {
+	color: var(--pausedColour);
+	background-color: transparent;
 }

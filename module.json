@@ -6,29 +6,19 @@
   "library": "false",
   "manifestPlusVersion": "1.0.0",
   "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "0.8.7",
+  "compatibleCoreVersion": "0.8.8",
   "authors": [
     {
       "name": "Mallander",
-      "url": "https://github.com/League-of-Foundry-Developers",
+      "url": "https://github.com/Mallander/",
       "discord": "Mallander#5370"
     }
   ],
-  "dependencies": [
-
-  ],
-  "conflicts": [
-    
-  ],
-  "esmodules": [
-    "/scripts/module.js"
-  ],
-  "scripts": [
-    "/scripts/lib/lib.js"
-  ],
-  "styles": [
-    "/styles/module.css"
-  ],
+  "dependencies": [],
+  "conflicts": [],
+  "esmodules": ["/scripts/module.js"],
+  "scripts": ["/scripts/lib/lib.js"],
+  "styles": ["/styles/module.css"],
   "languages": [
     {
       "lang": "en",
@@ -37,12 +27,18 @@
     }
   ],
   "url": "PLEASE USE RELEASE MANIFEST",
-  "manifest": "PLEASE USE RELEAS MANIFEST",
-  "download": "PLEASE USE RELEAS MANIFEST",
+  "manifest": "PLEASE USE RELEASE MANIFEST",
+  "download": "PLEASE USE RELEASE MANIFEST",
+  "changelog": "https://github.com/Mallander/playlist-enhancer/releases",
+  "bugs": "https://github.com/Mallander/playlist-enhancer/issues",
   "media": [
     {
-      "type": "icon",
-      "url": ""
+      "type": "cover",
+      "url": "https://raw.githubusercontent.com/Mallander/playlist-enhancer/main/images/Playlist_Enhancer.png"
+    },
+    {
+      "type": "screenshot",
+      "url": "https://raw.githubusercontent.com/Mallander/playlist-enhancer/main/images/demo.gif"
     }
   ]
 }
