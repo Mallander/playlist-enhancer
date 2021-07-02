@@ -6,27 +6,65 @@
 
 Playlist Enhancer allows you to create playlists from the current playing sounds. Curate your sounds and atmosphere and click the "Curate" button to create a playlist containing those sounds and their properties. Also adds support for drag & dropping copies of songs between playlists to make sound management a breeze.
 
-All track settings (Volume, fade etc.) are accurately saved within the new playlist when curating playlists or moving songs.
-
-Full feature list:
-
-- Curate new playlists from playing sounds
-- Add playing sounds to existing playlists
-- Drag & Drop sounds between playlists (Settings for both Copy or move)
-- Highlight playing/paused playlists, folders & sounds in the playlist directory
-- Bulk edit sounds within a playlist
-
 ![](/images/demo.gif)
 
-### Incompatibilities
+## Features
+
+### Create new playlists from playing songs
+
+Create your atmosphere by playing songs & editing sound levels.
+Click the "Curate" button to create a new playlist with these sounds or add the sounds to an existing playlist.
+
+### Drag & Drop sounds between playlists
+
+Move or copy sounds between playlists using drag & drop (Move/Copy can be changed in moodule settings)
+
+#### Applicable settings:
+
+Enable or disable copy of sounds between playlists (Disabling changes the behavior to "move")
+
+### Highlighting of playing sounds
+
+Playlists and folders containing playing/paused sounds are highlighted in the playlist menu for improved readability.
+
+#### Applicable settings:
+
+Playing track colour
+Paused track colour
+Enable/Disable entirely
+
+### Bulk Edit sounds within a playlist
+
+Change the volume, repeat and fade of all tracks within a playlist. Save your defaults to quickly apply those same settings to other playlists.
+
+#### Applicable settings:
+
+Default Volume
+Default Repeat
+Default Fade
+
+## Incompatibilities
 
 Most likely incompatible with "Playlist Drag and Drop" as the drop functions may conflict. Remains untested.
 
-### Issues
+## Known Issues
 
 If you have any issues, please feel free to raise them here on Github.
 
 ## Changelog
+
+### v1.1.0: Bulk editing of sounds
+
+Manifest: https://github.com/Mallander/playlist-enhancer/releases/download/v1.1.0/module.json
+
+- Added MVP for bulk editing of sounds via right-clicking on a playlist
+- Added associated settings for "Default" bulk edit states, these can be edited via the Bulk Edit dialog window or the module settings.
+- Improved debug for moving songs between playlists to detect folder actions.
+- Improved paused/playing track state detection
+- Improved reliability of curation
+- Updated README
+- Added artwork
+- module.json improvements to add issue tracking, changelog and more detail
 
 ### v1.0.5: Settings & Playlist status coloring
 
