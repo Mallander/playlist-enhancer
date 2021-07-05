@@ -1,6 +1,7 @@
 import { registerModuleSettings } from "./settings.js";
 var curateDialog, bulkEditDialog;
 var leftOffset = $(document).width() - 320 - 310;
+var draggedSound;
 
 Hooks.on("init", () => {
 	//Enable Debug
@@ -90,6 +91,7 @@ Hooks.on("renderPlaylistDirectory", (app, html) => {
 
 	//Set the drag targets
 	const sounds = html.find(".directory-list .sound-name");
+	const playlists = html.find(".directory-list .playlist");
 
 	// Get the sound IDs and set draggable, set ondragend callback
 	sounds.each((index, el) => {
@@ -101,9 +103,21 @@ Hooks.on("renderPlaylistDirectory", (app, html) => {
 			}
 
 			el.draggable = true;
-			el.ondragend = (e) => moveSoundToPlaylist(soundId, e);
+			el.ondragstart = (e) => {
+				draggedSound = e.target;
+			};
 		} catch (e) {
 			console.error(`Error: ${e}: Unable to make song ${el} draggable`);
+		}
+	});
+
+	// Get the sound IDs and set draggable, set ondragend callback
+	playlists.each((index, el) => {
+		try {
+			// el.draggable = true;
+			el.ondrop = (e) => moveSoundToPlaylist(draggedSound, e);
+		} catch (e) {
+			console.error(`Error: ${e}: Unable to make playlist ${el} droppable`);
 		}
 	});
 });
@@ -120,29 +134,40 @@ Hooks.on("getPlaylistDirectoryEntryContext", (app, html) => {
 });
 
 // Copy sound from one playlist to another
-function moveSoundToPlaylist(soundId, event) {
-	// Playlist ID that the drag was started from
-	let startingPlaylistId = getPlaylistIdFromElement(
-		event.srcElement.closest(".playlist")
-	);
-	// The sound object being dragged
-	let soundObject = getSoundObjectFromId(soundId);
-	// The target playlist ID from the drop co-ordinates
-	let targetPlaylistId = getPlaylistIdFromElement(
-		document.elementFromPoint(event.clientX, event.clientY)
-	);
-
-	// If drop target is not a playlist, throw error
-	if (!targetPlaylistId) {
-		return;
-	} else if (startingPlaylistId == targetPlaylistId) {
-		// Check if the drop target is the same as the starting playlist
+function moveSoundToPlaylist(soundElement, event) {
+	// Check if it's a sound that's being dropped
+	if (
+		soundElement == undefined ||
+		!soundElement.classList.contains("sound-name")
+	) {
 		return;
 	}
 
+	let startingPlaylist = soundElement.closest(".playlist");
+	let targetPlaylist = event.target.classList.contains("playlist")
+		? event.target
+		: event.target.closest(".playlist");
+
+	// Check if start & end playlists are the same
+	if (targetPlaylist == startingPlaylist) {
+		ui.notifications.warn(
+			"PLaylist Enhancer: Cannot move a sound into the same playlist as it started."
+		);
+		return;
+	}
+
+	// The sound object being dragged
+	let soundObject = getSoundObjectFromId(
+		soundElement.closest("li.sound").getAttribute("data-sound-id")
+	);
+	// The target playlist ID
+	let targetPlaylistId = targetPlaylist.getAttribute("data-entity-id");
+
+	// Get playlist object from ID
 	let playlist = game.playlists.contents.find((p) => p.id === targetPlaylistId);
 	playlist.createEmbeddedDocuments("PlaylistSound", [soundObject.data]);
 
+	// Check if settings enabled to move sounds rather than copy
 	if (!game.settings.get("playlist-enhancer", "enableDragSongCopy")) {
 		soundObject.delete();
 	}
@@ -161,31 +186,6 @@ function getSoundObjectFromId(soundId) {
 		);
 		return "";
 	}
-}
-
-// Return the playlist ID from the DOM element if applicable, otherwise return false
-function getPlaylistIdFromElement(el) {
-	if (
-		(el.closest(".playlist") == undefined || el.closest(".playlist") == null) &&
-		!el.classList.contains("playlist")
-	) {
-		if (el.classList.contains("folder") || el.closest(".folder") != undefined) {
-			ui.notifications.error(
-				"Playlist Enhancer Error: You cannot add a track directly to a folder. Target must be a playlist."
-			);
-			return false;
-		}
-
-		console.log("Playlist Enhancer Drop Target:");
-		console.log(el.classList);
-		ui.notifications.error(
-			"Playlist Enhancer Error: Target must be a playlist"
-		);
-		return false;
-	}
-	return el.classList.contains("playlist")
-		? el.getAttribute("data-entity-id")
-		: el.closest(".playlist").getAttribute("data-entity-id");
 }
 
 // Function for the playlist combination
@@ -308,7 +308,7 @@ async function curatePlaylist(
 }
 
 async function renderBulkdEditUI(elArray) {
-	let playlistID = getPlaylistIdFromElement(elArray[0]);
+	let playlistID = elArray[0].getAttribute("data-entity-id");
 	let playlist = game.playlists.contents.find((p) => p.id === playlistID);
 	const defaults = {
 		volume: game.settings.get("playlist-enhancer", "defaultSongVolume"),
