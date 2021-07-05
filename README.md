@@ -53,6 +53,13 @@ If you have any issues, please feel free to raise them here on Github.
 
 ## Changelog
 
+### v1.1.2: Firefox bug fix & drag & drop re-code
+
+Manifest: https://github.com/Mallander/playlist-enhancer/releases/download/1.1.2/module.json
+
+- Fixed a bug on Firefox where dragging & dropping playlists would throw an error incorrectly.
+- Rebuilt drag & drop code from the ground up to improve reliability, reduce checks/error reporting needed
+
 ### v1.1.0: Bulk editing of sounds
 
 Manifest: https://github.com/Mallander/playlist-enhancer/releases/download/v1.1.0/module.json
