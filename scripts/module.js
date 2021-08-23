@@ -45,6 +45,18 @@ Hooks.on("init", () => {
 	);
 
 	registerModuleSettings();
+	document
+		.querySelector(":root")
+		.style.setProperty(
+			"--playingColour",
+			game.settings.get("playlist-enhancer", "playlistPlayingColor")
+		);
+	document
+		.querySelector(":root")
+		.style.setProperty(
+			"--pausedColour",
+			game.settings.get("playlist-enhancer", "playlistPausedColor")
+		);
 });
 
 // Add "Curate" button when a sound is playing and set the click event for dialog pop-up.
@@ -93,15 +105,9 @@ Hooks.on("renderPlaylistDirectory", (app, html) => {
 	const sounds = html.find(".directory-list .sound-name");
 	const playlists = html.find(".directory-list .playlist");
 
-	// Get the sound IDs and set draggable, set ondragend callback
+	// Set draggable state for sounds with callback
 	sounds.each((index, el) => {
 		try {
-			const soundId = el.closest("li.sound").getAttribute("data-sound-id");
-
-			if (!soundId) {
-				return;
-			}
-
 			el.draggable = true;
 			el.ondragstart = (e) => {
 				draggedSound = e.target;
@@ -111,10 +117,9 @@ Hooks.on("renderPlaylistDirectory", (app, html) => {
 		}
 	});
 
-	// Get the sound IDs and set draggable, set ondragend callback
+	// Set the onDrop callback for the playlists
 	playlists.each((index, el) => {
 		try {
-			// el.draggable = true;
 			el.ondrop = (e) => moveSoundToPlaylist(draggedSound, e);
 		} catch (e) {
 			console.error(`Error: ${e}: Unable to make playlist ${el} droppable`);

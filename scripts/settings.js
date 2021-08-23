@@ -11,11 +11,11 @@ export const registerModuleSettings = function () {
 
   game.settings.register("playlist-enhancer", "playlistPlayingColor", {
     name: "Playing playlist/song highlight color",
-    hint: 'Colors are only applicable when "Enable playing/paused colours" is enabled. Default: #008000',
+    hint: 'Colors are only applicable when "Enable playing/paused colours" is enabled. Default: #ffaa00',
     scope: "client",
     config: true,
     type: String,
-    default: "#008000",
+    default: "#ffaa00",
     onChange: (value) => {
       // value is the new value of the setting
       document
@@ -26,11 +26,11 @@ export const registerModuleSettings = function () {
 
   game.settings.register("playlist-enhancer", "playlistPausedColor", {
     name: "Paused playlist/song highlight color",
-    hint: 'Colors are only applicable when "Enable playing/paused colours" is enabled. Default: #ff6400',
+    hint: 'Colors are only applicable when "Enable playing/paused colours" is enabled. Default: #999999',
     scope: "client",
     config: true,
     type: String,
-    default: "#ff6400",
+    default: "#999999",
     onChange: (value) => {
       // value is the new value of the setting
       document
