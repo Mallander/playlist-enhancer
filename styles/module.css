@@ -1,6 +1,6 @@
 :root {
-	--playingColour: #008000;
-	--pausedColour: #ff6400;
+	--playingColour: #ffaa00;
+	--pausedColour: #999999;
 }
 
 .playlist-enhancer-curate {
