@@ -1,7 +1,6 @@
 import { registerModuleSettings } from "./settings.js";
 var curateDialog, bulkEditDialog;
 var leftOffset = $(document).width() - 320 - 310;
-var draggedSound;
 
 Hooks.on("init", () => {
 	//Enable Debug
@@ -110,7 +109,8 @@ Hooks.on("renderPlaylistDirectory", (app, html) => {
 		try {
 			el.draggable = true;
 			el.ondragstart = (e) => {
-				draggedSound = e.target;
+				const data = {draggedSound: e.target.closest("li.sound").getAttribute("data-sound-id")};
+				e.dataTransfer.setData('text/plain', JSON.stringify(data));
 			};
 		} catch (e) {
 			console.error(`Error: ${e}: Unable to make song ${el} draggable`);
@@ -120,7 +120,15 @@ Hooks.on("renderPlaylistDirectory", (app, html) => {
 	// Set the onDrop callback for the playlists
 	playlists.each((index, el) => {
 		try {
-			el.ondrop = (e) => moveSoundToPlaylist(draggedSound, e);
+			el.ondrop = (e) => {
+				let data = e.dataTransfer.getData('text/plain');
+				try{
+					data = JSON.parse(data);
+				} catch (e) {
+					return;
+				}
+				moveSoundToPlaylist(data.draggedSound, e);
+			}
 		} catch (e) {
 			console.error(`Error: ${e}: Unable to make playlist ${el} droppable`);
 		}
@@ -139,16 +147,15 @@ Hooks.on("getPlaylistDirectoryEntryContext", (app, html) => {
 });
 
 // Copy sound from one playlist to another
-function moveSoundToPlaylist(soundElement, event) {
+function moveSoundToPlaylist(soundId, event) {
 	// Check if it's a sound that's being dropped
 	if (
-		soundElement == undefined ||
-		!soundElement.classList.contains("sound-name")
+		soundId == undefined
 	) {
 		return;
 	}
 
-	let startingPlaylist = soundElement.closest(".playlist");
+	let startingPlaylist = game.playlists.find(playlist => playlist.sounds.get(soundId));
 	let targetPlaylist = event.target.classList.contains("playlist")
 		? event.target
 		: event.target.closest(".playlist");
@@ -162,9 +169,8 @@ function moveSoundToPlaylist(soundElement, event) {
 	}
 
 	// The sound object being dragged
-	let soundObject = getSoundObjectFromId(
-		soundElement.closest("li.sound").getAttribute("data-sound-id")
-	);
+	let soundObject = getSoundObjectFromId(soundId);
+
 	// The target playlist ID
 	let targetPlaylistId = targetPlaylist.getAttribute("data-entity-id");
 
