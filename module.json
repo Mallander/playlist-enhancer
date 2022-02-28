@@ -1,44 +1,50 @@
 {
-  "name": "playlist-enhancer",
-  "title": "Playlist Enhancer",
-  "description": "Playlist Enhancer allows you to create playlists from the current playing sounds as well as simplified copying of sounds between playlists using drag & drop. Curate your sounds and atmosphere and click the 'Curate' button to create a playlist containing those sounds and their properties. All track settings (Volume, fade etc.) are accurately saved within the new playlist when curating playlists or moving songs.",
-  "version": "PLEASE USE RELEASE MANIFEST",
-  "library": "false",
-  "manifestPlusVersion": "1.0.0",
-  "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "0.8.9",
-  "authors": [
-    {
-      "name": "Mallander",
-      "url": "https://github.com/Mallander/",
-      "discord": "Mallander#5370"
-    }
-  ],
-  "dependencies": [],
-  "conflicts": [],
-  "esmodules": ["/scripts/module.js"],
-  "scripts": ["/scripts/lib/lib.js"],
-  "styles": ["/styles/module.css"],
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "languages/en.json"
-    }
-  ],
-  "url": "PLEASE USE RELEASE MANIFEST",
-  "manifest": "PLEASE USE RELEASE MANIFEST",
-  "download": "PLEASE USE RELEASE MANIFEST",
-  "changelog": "https://github.com/Mallander/playlist-enhancer/releases",
-  "bugs": "https://github.com/Mallander/playlist-enhancer/issues",
-  "media": [
-    {
-      "type": "cover",
-      "url": "https://raw.githubusercontent.com/Mallander/playlist-enhancer/main/images/Playlist_Enhancer.png"
-    },
-    {
-      "type": "screenshot",
-      "url": "https://raw.githubusercontent.com/Mallander/playlist-enhancer/main/images/demo.gif"
-    }
-  ]
+    "name": "playlist-enhancer",
+    "title": "Playlist Enhancer",
+    "description": "Playlist Enhancer allows you to create playlists from the current playing sounds as well as bulk editing tracks within your playlists. Curate your sounds and atmosphere and click the 'Curate' button to create a playlist containing those sounds and their properties. All track settings (Volume, fade etc.) are accurately saved within the new playlist when curating playlists or editing songs.",
+    "version": "1.1.5",
+    "library": "false",
+    "manifestPlusVersion": "1.0.0",
+    "minimumCoreVersion": "0.9.0",
+    "compatibleCoreVersion": "0.9.14",
+    "authors": [
+        {
+            "name": "Mallander",
+            "url": "https://github.com/Mallander/",
+            "discord": "Mallander#5370"
+        }
+    ],
+    "dependencies": [],
+    "conflicts": [],
+    "esmodules": [
+        "/scripts/module.js"
+    ],
+    "scripts": [
+        "/scripts/lib/lib.js"
+    ],
+    "styles": [
+        "/styles/module.css"
+    ],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "languages/en.json"
+        }
+    ],
+    "url": "https://github.com/Mallander/playlist-enhancer",
+    "manifest": "https://github.com/Mallander/playlist-enhancer/releases/latest/download/module.json",
+    "download": "https://github.com/Mallander/playlist-enhancer/releases/download/1.1.3/module.zip",
+    "changelog": "https://github.com/Mallander/playlist-enhancer/releases",
+    "bugs": "https://github.com/Mallander/playlist-enhancer/issues",
+    "media": [
+        {
+            "type": "cover",
+            "url": "https://raw.githubusercontent.com/Mallander/playlist-enhancer/main/images/Playlist_Enhancer.png"
+        },
+        {
+            "type": "screenshot",
+            "url": "https://raw.githubusercontent.com/Mallander/playlist-enhancer/main/images/demo.gif"
+        }
+    ]
 }
