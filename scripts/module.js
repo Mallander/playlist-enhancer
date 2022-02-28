@@ -100,31 +100,6 @@ Hooks.on("renderPlaylistDirectory", (app, html) => {
 			".paused-folder:not(.playing-folder) h3 i:first-child"
 		);
 	}
-
-	//Set the drag targets
-	const sounds = html.find(".directory-list .sound-name");
-	const playlists = html.find(".directory-list .playlist");
-
-	// Set draggable state for sounds with callback
-	sounds.each((index, el) => {
-		try {
-			el.draggable = true;
-			el.ondragstart = (e) => {
-				draggedSound = e.target;
-			};
-		} catch (e) {
-			console.error(`Error: ${e}: Unable to make song ${el} draggable`);
-		}
-	});
-
-	// Set the onDrop callback for the playlists
-	playlists.each((index, el) => {
-		try {
-			el.ondrop = (e) => moveSoundToPlaylist(draggedSound, e);
-		} catch (e) {
-			console.error(`Error: ${e}: Unable to make playlist ${el} droppable`);
-		}
-	});
 });
 
 Hooks.on("getPlaylistDirectoryEntryContext", (app, html) => {
@@ -137,46 +112,6 @@ Hooks.on("getPlaylistDirectoryEntryContext", (app, html) => {
 		},
 	});
 });
-
-// Copy sound from one playlist to another
-function moveSoundToPlaylist(soundElement, event) {
-	// Check if it's a sound that's being dropped
-	if (
-		soundElement == undefined ||
-		!soundElement.classList.contains("sound-name")
-	) {
-		return;
-	}
-
-	let startingPlaylist = soundElement.closest(".playlist");
-	let targetPlaylist = event.target.classList.contains("playlist")
-		? event.target
-		: event.target.closest(".playlist");
-
-	// Check if start & end playlists are the same
-	if (targetPlaylist == startingPlaylist) {
-		ui.notifications.warn(
-			"PLaylist Enhancer: Cannot move a sound into the same playlist as it started."
-		);
-		return;
-	}
-
-	// The sound object being dragged
-	let soundObject = getSoundObjectFromId(
-		soundElement.closest("li.sound").getAttribute("data-sound-id")
-	);
-	// The target playlist ID
-	let targetPlaylistId = targetPlaylist.getAttribute("data-entity-id");
-
-	// Get playlist object from ID
-	let playlist = game.playlists.contents.find((p) => p.id === targetPlaylistId);
-	playlist.createEmbeddedDocuments("PlaylistSound", [soundObject.data]);
-
-	// Check if settings enabled to move sounds rather than copy
-	if (!game.settings.get("playlist-enhancer", "enableDragSongCopy")) {
-		soundObject.delete();
-	}
-}
 
 // Credit to https://github.com/gsimon2 for creating this function for use in playlist-drag-and-drop: https://github.com/gsimon2/playlist-drag-and-drop
 function getSoundObjectFromId(soundId) {
@@ -313,7 +248,10 @@ async function curatePlaylist(
 }
 
 async function renderBulkdEditUI(elArray) {
-	let playlistID = elArray[0].getAttribute("data-entity-id");
+
+	console.log(elArray);
+
+	let playlistID = elArray[0].getAttribute("data-document-id");
 	let playlist = game.playlists.contents.find((p) => p.id === playlistID);
 	const defaults = {
 		volume: game.settings.get("playlist-enhancer", "defaultSongVolume"),

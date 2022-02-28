@@ -39,16 +39,6 @@ export const registerModuleSettings = function () {
     },
   });
 
-  // Drag & Drop Copy settings
-  game.settings.register("playlist-enhancer", "enableDragSongCopy", {
-    name: "Copy songs between playlists",
-    hint: "Enabling this setting will leave the original version of the moved song in the original playlist, creating a copy in the new playlist. Disable to remove the original on move.",
-    scope: "client",
-    config: true,
-    type: Boolean,
-    default: 1,
-  });
-
   // Bulkd Edit Tracks settings
   game.settings.register("playlist-enhancer", "defaultSongVolume", {
     name: "'Bulk Edit' default: Song volume",
