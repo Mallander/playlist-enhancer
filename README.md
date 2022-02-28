@@ -15,23 +15,9 @@ Playlist Enhancer allows you to create playlists from the current playing sounds
 Create your atmosphere by playing songs & editing sound levels.
 Click the "Curate" button to create a new playlist with these sounds or add the sounds to an existing playlist.
 
-### Drag & Drop sounds between playlists
-
-Move or copy sounds between playlists using drag & drop (Move/Copy can be changed in moodule settings)
-
 #### Applicable settings:
 
 Enable or disable copy of sounds between playlists (Disabling changes the behavior to "move")
-
-### Highlighting of playing sounds
-
-Playlists and folders containing playing/paused sounds are highlighted in the playlist menu for improved readability.
-
-#### Applicable settings:
-
-Playing track colour
-Paused track colour
-Enable/Disable entirely
 
 ### Bulk Edit sounds within a playlist
 
@@ -43,15 +29,32 @@ Default Volume
 Default Repeat
 Default Fade
 
+### Highlighting of playing sounds
+
+Playlists and folders containing playing/paused sounds are highlighted in the playlist menu for improved readability.
+
+#### Applicable settings:
+
+Playing track colour
+Paused track colour
+Enable/Disable entirely
+
 ## Incompatibilities
 
-Most likely incompatible with "Playlist Drag and Drop" as the drop functions may conflict. Remains untested.
+No known imcompatibilities
 
 ## Known Issues
 
 If you have any issues, please feel free to raise them here on Github.
 
 ## Changelog
+
+### v1.1.5: Updated for Foundry 0.9.14
+
+Manifest: https://github.com/Mallander/playlist-enhancer/releases/download/1.1.5/module.json
+
+- Removed Drag & Drop of songs functionality, as this is now part of Foundry Core
+- Fixed Bulk Editing of tracks
 
 ### v1.1.2: Firefox bug fix & drag & drop re-code
 
