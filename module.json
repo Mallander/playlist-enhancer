@@ -1,12 +1,16 @@
 {
-    "name": "playlist-enhancer",
+    "id": "playlist-enhancer",
     "title": "Playlist Enhancer",
     "description": "Playlist Enhancer allows you to create playlists from the current playing sounds as well as bulk editing tracks within your playlists. Curate your sounds and atmosphere and click the 'Curate' button to create a playlist containing those sounds and their properties. All track settings (Volume, fade etc.) are accurately saved within the new playlist when curating playlists or editing songs.",
-    "version": "1.1.5",
+    "version": "1.1.7",
     "library": "false",
-    "manifestPlusVersion": "1.0.0",
-    "minimumCoreVersion": "0.9.0",
-    "compatibleCoreVersion": "0.9.14",
+    "minimumCoreVersion": 9,
+    "compatibleCoreVersion": "10.291",
+    "compatibility": {
+      "minimum": 9,
+      "verified": "10.291",
+      "maximum": 10
+    },
     "authors": [
         {
             "name": "Mallander",
@@ -15,6 +19,7 @@
         }
     ],
     "dependencies": [],
+    "relationships": {},
     "conflicts": [],
     "esmodules": [
         "/scripts/module.js"
@@ -33,8 +38,8 @@
         }
     ],
     "url": "https://github.com/Mallander/playlist-enhancer",
-    "manifest": "https://github.com/Mallander/playlist-enhancer/releases/latest/download/module.json",
-    "download": "https://github.com/Mallander/playlist-enhancer/releases/download/1.1.6/module.zip",
+    "manifest": "https://github.com/Mallander/playlist-enhancer/releases/download/v1.1.7/module.json",
+    "download": "https://github.com/Mallander/playlist-enhancer/releases/download/1.1.7/module.zip",
     "changelog": "https://github.com/Mallander/playlist-enhancer/releases",
     "bugs": "https://github.com/Mallander/playlist-enhancer/issues",
     "media": [
